@@ -1,0 +1,33 @@
+User memiliki usaha kecil berupa membuat dan menjual brownies. User menawarkan
+beberapa macam jenis brownies, sebut saja rasa original, rasa keju, dan chocochips.
+Pada skala kecil ini, pendekatan yang paling efektif dari segi biaya dan
+operasional adalah dengan membuat brownies sesuai pesananan.
+Akan tetapi hal tersebut menimbulkan permasalahan pada penyimpanan bahan baku,
+terutama masalah kadaluarsa, karena user harus membeli bahan baku dalam jumlah yang
+banyak, akan tetapi yang terpakai adalah tergantung rasa apa yang dipesan. Oleh karena
+itu user memisahkan bahan baku dari setiap pambelian dan mengharapkan suatu bentuk
+monitoring dari bahan-bahan baku tersebut.
+
+User requirement:
+1. Dapat melihat isi dari masing-masing tempat penyimpanan, yang menampilkan semua
+informasinya.
+2. Dapat melihat bahan baku tertentu dari semua penyimpanan, yang menampilkan semua
+informasinya.
+3. Informasi yang diharapkan adalah jumlah, tanggal pembelian, tanggal kadaluarsa,
+berapa hari lagi sebelum kadaluarsa.
+4. Dapat menambah, meng-update, dan men-delete baik bahan baku maupun penyimpanan.
+5. Dapat melihat bahan baku di penyimpanan mana yang akan kadaluarsa dalam 7 hari
+atau kurang.
+6. User mengharapkan bahwa setiap pembelian bahan baku akan disimpan hanya pada satu
+tempat penyimpanan, atau dengan kata lain bahan baru dari setiap pembelian tidak akan
+disebarkan pada beberapa tempat penyimpanan.
+
+list bahan baku:
+1. gular (gr)
+2. telur (butir)
+3. coklat bubuk (gr)
+4. choco chip (gr)
+5. terigu (gr)
+6. mentega (gr)
+7. minyak (gr)
+8. keju (gr)
