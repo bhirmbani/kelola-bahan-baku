@@ -36,10 +36,16 @@
                         <span> Notifikasi </span>
                     </a>
                 </li>
+                <!--<li>-->
+                <!--<a href="/bahanBakus/" class="waves-effect">-->
+                <!--<i class="fa fa-shopping-cart"></i>-->
+                <!--<span> Bahan Baku </span>-->
+                <!--</a>-->
+                <!--</li>-->
                 <li>
-                    <a href="/bahanBakus/" class="waves-effect">
+                    <a href="/pembelians/" class="waves-effect">
                         <i class="fa fa-shopping-cart"></i>
-                        <span> Bahan Baku </span>
+                        <span> Pembelian </span>
                     </a>
                 </li>
                 <li>
@@ -101,24 +107,26 @@
 
 
                                             <tbody>
-                                              <% penyimpanans.forEach((penyimpanan) => { %>
+                                            <% let no = 1
+                                                datas.forEach(data => {
+                                            %>
                                                 <tr>
-                                                    <td><%=penyimpanan.id%></td>
-                                                    <td><%=penyimpanan.nama%></td>
+                                                    <td><%- no %></td>
+                                                    <td><%- data.tempat %></td>
                                                     <td>
-                                                        <a href="/penyimpanans/detailPenyimpanan/"
+                                                        <a href="/penyimpanans/detailPenyimpanan/<%- data.id %>"
                                                            class="btn btn-icon waves-effect waves-light btn-purple"
                                                            data-toggle="tooltip"
                                                            data-placement="top"
                                                            title="Detail Penyimpanan"><i class="fa fa-search-plus"></i>
                                                         </a>
-                                                        <a href="/penyimpanans/editPenyimpanan/"
+                                                        <a href="/penyimpanans/editPenyimpanan/<%- data.id %>"
                                                            class="btn btn-icon waves-effect waves-light btn-warning"
                                                            data-toggle="tooltip"
                                                            data-placement="top"
                                                            title="Edit Penyimpanan"><i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <a href="/penyimpanans/hapusPenyimpanan/"
+                                                        <a href="/penyimpanans/hapusPenyimpanan/<%- data.id %>"
                                                            class="btn btn-icon waves-effect waves-light btn-danger"
                                                            data-toggle="tooltip"
                                                            data-placement="top"
@@ -126,8 +134,8 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            <%  }); %>
 
+                                            <% no++ }) %>
 
 
                                             </tbody>
