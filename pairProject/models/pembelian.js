@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         Pembelian.belongsToMany(models.BahanBaku, {through: 'BahanBeli', foreignKey: 'idPembelian'});
-        Pembelian.belongsToMany(models.Penyimpanan, {foreignKey: 'idPenyimpanan'});
+        Pembelian.belongsTo(models.Penyimpanan, {foreignKey: 'idPenyimpanan'});
       }
     }
   });

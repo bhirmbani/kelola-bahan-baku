@@ -1,16 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('penyimpanans/daftarPenyimpanan');
+  models.Penyimpanan.findAll()
+    .then((penyimpanans) => {
+      res.render('penyimpanans/daftarPenyimpanan', {penyimpanans: penyimpanans});
+    }).catch((err) => {
+      res.send(err);
+    });
 });
 
 router.get('/tambahPenyimpanan', (req, res, next) => {
+  
     res.render('penyimpanans/tambahPenyimpanan');
 })
 
 router.get('/detailPenyimpanan', (req, res, next) => {
+
     res.render('penyimpanans/detailPenyimpanan');
 })
 
