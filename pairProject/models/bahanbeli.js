@@ -10,6 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        BahanBeli.belongsTo(models.BahanBaku, {foreignKey: "idBahanBaku"});
+        BahanBeli.belongsTo(models.Pembelian, {foreignKey: "idPembelian"});
       }
     }
   });
