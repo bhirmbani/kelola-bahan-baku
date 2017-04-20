@@ -72,15 +72,26 @@ router.post('/editPenyimpanan/', (req,res,next) => {
 })
 
 router.get('/hapusPenyimpanan/:id', (req,res,next) => {
-  var id = req.params.id;
+  var idPenyimpanan = req.params.id;
 
-  models.Penyimpanan.destroy({
+  models.Pembelian.findAll({
     where : {
-      id : id
+      idPenyimpanan : idPenyimpanan
     }
   })
   .then(datas => {
-    res.redirect('/penyimpanans');
+    if(datas.length == 0){
+      models.Penyimpanan.destroy({
+        where:{
+          id: idPenyimpanan
+        }
+      })
+      .then(items => {
+        res.redirect('/penyimpanans')
+      })
+    } else {
+      res.redirect('/penyimpanans')
+    }
   })
   .catch(err => {
     console.log(err);

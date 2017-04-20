@@ -4,51 +4,102 @@ var models = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+    // res.render('index', { title: 'Express' });
+});
+
+router.get('/tambahBahanBaku/:id', function(req, res, next) {
+  var idPembelian = req.params.id;
   models.BahanBaku.findAll()
-    .then((bahanBakus) => {
-      if(bahanBakus) {
-        res.render('bahanBakus/daftarBahanBaku', {bahanBakus: bahanBakus});
-      } else {
-        res.render('bahanBakus/daftarBahanBaku', {bahanBakus: null});
-      }
-
-    }).catch((err) => {
-      res.send(err);
-    });
-    // res.render('index', { title: 'Express' });
+  .then(datas => {
+    res.render('bahanBakus/tambahBahanBaku', {datas:datas,idPembelian:idPembelian});
+  })
+    // res.render('bahanBakus/tambahBahanBaku', {id:id});
 });
 
-router.get('/tambahBahanBaku', function(req, res, next) {
+router.post('/tambahBahanBaku', function(req, res, next) {
+    var idPembelian = req.body.idPembelian;
+    var bahanBaku = req.body.bahanBaku;
+    var jmlBahan = req.body.jmlBahan;
+    var tglKadaluarsa = req.body.tglKadaluarsa;
+    var idStatus = 1;
 
-    // res.render('index', { title: 'Express' });
-    res.render('bahanBakus/tambahBahanBaku');
+    models.BahanBeli.create({
+      jumlah: jmlBahan,
+      tanggalExp: tglKadaluarsa,
+      idBahanBaku: bahanBaku,
+      idStatus: idStatus,
+      idPembelian: idPembelian
+    })
+    .then(datas => {
+      res.redirect('/pembelians/detailPembelian/'+idPembelian);
+    })
+
 });
 
-// router.post('/tambahBahanBaku/tambah', function(req, res, next) {
-//     let penyimpanan = req.body.penyimpanan;
-//     let tglPembelian = req.Body.tglPembelian;
-//     let jmlTepung = req.Body.jmlTepung;
-//     let tglKadaluarsaTepung = req.Body.tglKadaluarsaTepung;
-//     let jmlGulaPasir = req.Body.jmlGulaPasir;
-//     let tglKadaluarsaGulaPasir = req.Body.tglKadaluarsaGulaPasir;
-//     models.Pembelian.create({tanggalBeli:tglPembelian, idPenyimpanan:penyimpanan})
-//       .then((beli) => {
-//         if (jmlTepung) {
-//           models.BahanBeli.create({jumlah:jmlTepung, idBahanBaku:5, tanggalExp:tlgKadaluarsaTepung, idStatus:null, idPembelian:beli.id })
-//             .then().catch();
-//           }
-//     }).catch();
-//
-//
-//
-//     // res.render('index', { title: 'Express' });
-//     res.render('bahanBakus/tambahBahanBaku');
-// });
 
-
-router.get('/editBahanBaku', function(req, res, next) {
+router.get('/editBahanBaku/:id', function(req, res, next) {
     // res.render('index', { title: 'Express' });
-    res.render('bahanBakus/editBahanBaku');
+    var idBahanBeli = req.params.id;
+
+    models.BahanBeli.findAll({
+      where: {id:idBahanBeli},attributes: ['id', 'jumlah','tanggalExp','idPembelian','idBahanBaku']
+    })
+    .then(datas => {
+      models.BahanBaku.findAll()
+      .then(arrBahan => {
+        res.render('bahanBakus/editBahanBaku',{datas:datas,arrBahan:arrBahan});
+      })
+    })
 });
+
+router.post('/editBahanBaku', (req,res,next) => {
+  var idBahanBeli = req.body.idBahanBeli;
+  var idPembelian = req.body.idPembelian;
+  var bahanBaku = req.body.bahanBaku;
+  var jmlBahan = req.body.jmlBahan;
+  var tglKadaluarsa = req.body.tglKadaluarsa;
+
+  models.BahanBeli.update({
+    jumlah: jmlBahan,
+    tanggalExp: tglKadaluarsa,
+    idBahanBaku: bahanBaku,
+    idPembelian: idPembelian
+  }, {
+    where : {
+      id: idBahanBeli
+    }
+  })
+  .then(datas => {
+    res.redirect('/pembelians/detailPembelian/'+idPembelian);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.get('/hapusBahanBaku/:id', (req,res,next) => {
+  var idBahanBeli = req.params.id;
+
+  models.BahanBeli.findOne({
+    where : {
+      id: idBahanBeli
+    }, attributes: ['id', 'jumlah','tanggalExp','idPembelian','idBahanBaku']
+  })
+  .then(datas => {
+    if(datas){
+      let idPembelian = datas.idPembelian;
+      models.BahanBeli.destroy({
+        where: {
+          id: idBahanBeli
+        }
+      })
+      .then(items => {
+        res.redirect('/pembelians/detailPembelian/'+idPembelian);
+      })
+    }
+  })
+
+})
 
 module.exports = router;

@@ -17,7 +17,7 @@ module.exports = {
       jumlah: 10,
       tanggalExp: "2017-05-10",
       idBahanBaku: 1,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -25,7 +25,7 @@ module.exports = {
       jumlah: 20,
       tanggalExp: "2017-06-15",
       idBahanBaku: 2,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -33,7 +33,7 @@ module.exports = {
       jumlah: 30,
       tanggalExp: "2017-05-14",
       idBahanBaku: 3,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -41,7 +41,7 @@ module.exports = {
       jumlah: 50,
       tanggalExp: "2017-04-28",
       idBahanBaku: 4,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -49,7 +49,7 @@ module.exports = {
       jumlah: 60,
       tanggalExp: "2017-05-02",
       idBahanBaku: 5,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -57,7 +57,7 @@ module.exports = {
       jumlah: 70,
       tanggalExp: "2017-04-15",
       idBahanBaku: 6,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -65,7 +65,7 @@ module.exports = {
       jumlah: 80,
       tanggalExp: "2017-05-15",
       idBahanBaku: 7,
-      idStatus: null,
+      idStatus: 1,
       idPembelian: 1,
       createdAt: new Date(),
       updatedAt: new Date()

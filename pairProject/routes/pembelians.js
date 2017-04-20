@@ -25,10 +25,11 @@ router.get('/detailPembelian/:id', (req,res,next) => {
   })
   .then(datas => {
     models.BahanBeli.findAll({
-      where: {idPembelian:id}, include:[models.BahanBaku,models.Status]
+      where: {idPembelian:id},attributes: ['id', 'jumlah','tanggalExp','idStatus'], include:[models.BahanBaku,models.Status]
     })
     .then(arrBahan => {
       res.render('pembelians/detailPembelian', {datas:datas,arrBahan:arrBahan});
+      // res.json(arrBahan);
     })
   })
   .catch(err => {

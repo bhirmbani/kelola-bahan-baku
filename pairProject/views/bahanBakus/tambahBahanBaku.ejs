@@ -41,9 +41,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/bahanBakus/" class="waves-effect active">
+                    <a href="/pembelians/" class="waves-effect active">
                         <i class="fa fa-shopping-cart"></i>
-                        <span> Bahan Baku </span>
+                        <span> Pembelian </span>
                     </a>
                 </li>
                 <li>
@@ -68,7 +68,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/bahanBakus">Daftar Bahan Baku</a></li>
+                        <li>Daftar Pembelian</li>
+                        <li>Detail Pembelian</li>
                         <li>Tambah Bahan Baku</li>
                     </ol>
                 </div>
@@ -85,8 +86,13 @@
                                 <form class="cmxform form-horizontal tasi-form"
                                       id="formTambahBahanBaku"
                                       method="POST"
-                                      action="/tambahBahanBaku/tambah"
+                                      action="/bahanBakus/tambahBahanBaku"
                                       novalidate="novalidate">
+                                      <input class=" form-control"
+                                             id="idPembelian"
+                                             name="idPembelian"
+                                             type="hidden"
+                                             value="<%- idPembelian%>">
                                     <div class="col-lg-2">
                                         <img src="/images/ingredients.png"
                                              alt=""
@@ -95,116 +101,44 @@
                                              width="100px">
                                     </div>
                                     <div class="col-lg-10">
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                  <strong><small>* Diisi jika membeli bahan tersebut</small></strong>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="col-lg-6">
-                                                <label for="tglPembelian"
-                                                       class="control-label">Tanggal Pembelian
-                                                </label>
+                                      <div class="form-group">
+                                          <div class="col-lg-6">
+                                              <label for="status1"
+                                                     class="control-label">Bahan Baku</label>
+                                              <select class=""
+                                                      id="bahanBaku"
+                                                      name="bahanBaku">
 
-                                                    <input type="text"
-                                                    class="form-control datepicker1"
-                                                    placeholder=""
-                                                    id="tglPembelian"
-                                                    name="tglPembelian">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <h4>Tepung Terigu</h4>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <label for="jmlTepung"
-                                                       class="control-label">Jumlah Tepung (per-kg) *</label>
-                                                <input class="form-control"
-                                                       id="jmlTepung"
-                                                       name="jmlTepung"
-                                                       type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="col-lg-6">
-                                                <label for="tglKadaluarsaTepung"
-                                                       class="control-label">Tanggal Kadaluarsa Tepung
-                                                </label>
+                                                  <% datas.forEach(data=> { %>
+                                                    <option value="<%- data.id %>"><%- data.nama %></option>
+                                                  <%})%>
 
-                                                <input type="text"
-                                                       class="form-control datepicker2"
-                                                       placeholder=""
-                                                       id="tglKadaluarsaTepung"
-                                                       name="tglKadaluarsaTepung">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <label for="status1"
-                                                       class="control-label">Status Tepung Terigu </label>
-                                                <select class=""
-                                                        id="status1"
-                                                        name="status1"
-                                                        required>
-                                                    <option value="Sudah Kadaluarsa">-</option>
-                                                    <option value="Aman">Aman</option>
-                                                    <option value="Akan Kadaluarsa">Akan Kadaluarsa</option>
-                                                    <option value="Sudah Kadaluarsa">Sudah Kadaluarsa</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-6">
+                                              <label for="jmlBahan"
+                                                     class="control-label">Jumlah Bahan <small>(sesuai jumlah takaran yang dibeli : gram / butir / ml)</small> </label>
+                                              <input class="form-control"
+                                                     id="jmlBahan"
+                                                     name="jmlBahan"
+                                                     type="text">
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <div class="col-lg-6">
+                                              <label for="tglKadaluarsa"
+                                                     class="control-label">Tanggal Kadaluarsa
+                                              </label>
 
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <h4>Gula Pasir</h4>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <label for="jmlGulaPasir"
-                                                       class="control-label">Jumlah Gula Pasir (per-kg) *</label>
-                                                <input class="form-control"
-                                                       id="jmlGulaPasir"
-                                                       name="jmlGulaPasir"
-                                                       type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="col-lg-6">
-                                                <label for="tglKadaluarsaGulaPasir"
-                                                       class="control-label">Tanggal Kadaluarsa Gula Pasir
-                                                </label>
-
-                                                <input type="text"
-                                                       class="form-control datepicker2"
-                                                       placeholder=""
-                                                       id="tglKadaluarsaGulaPasir"
-                                                       name="tglKadaluarsaGulaPasir">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-6">
-                                                <label for="status1"
-                                                       class="control-label">Status Gula Pasir </label>
-                                                <select class=""
-                                                        id="status2"
-                                                        name="status2"
-                                                        required>
-                                                    <option value="Sudah Kadaluarsa">-</option>
-                                                    <option value="Aman">Aman</option>
-                                                    <option value="Akan Kadaluarsa">Akan Kadaluarsa</option>
-                                                    <option value="Sudah Kadaluarsa">Sudah Kadaluarsa</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-
+                                              <input type="text"
+                                                     class="form-control datepicker1"
+                                                     placeholder=""
+                                                     id="tglKadaluarsa"
+                                                     name="tglKadaluarsa">
+                                          </div>
+                                      </div>
                                         <div class="form-group">
                                             <div class="col-lg-6">
                                                 <button class="btn btn-primary waves-effect waves-light m-r-10"
@@ -235,14 +169,10 @@
 
 
 <% include ../partials/script.ejs %>
+
 <script src="/javascripts/select2/select2.min.js"></script>
 <script src="/javascripts/timepicker/bootstrap-datepicker.js"></script>
 
-<script type="text/javascript"
-        src="/javascripts/jquery.validate/jquery.validate.min.js"></script>
-
-<!--form validation init-->
-<script src="/javascripts/jquery.validate/form-validation-init.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -251,35 +181,11 @@
             autoclose: true
         });
     });
-    $(document).ready(function () {
-        $('.datepicker2').datepicker({
-            format: "yyyy-mm-dd",
-            autoclose: true
-        });
-    });
-    $(document).ready(function () {
-        $('.datepicker3').datepicker({
-            format: "yyyy-mm-dd",
-            autoclose: true
-        });
-    });
 </script>
 
 <script>
     $(document).ready(function () {
-        $("#status1").select2({
-            placeholder: "Please Select",
-            width: '100%'
-        });
-    });
-    $(document).ready(function () {
-        $("#status2").select2({
-            placeholder: "Please Select",
-            width: '100%'
-        });
-    });
-    $(document).ready(function () {
-        $("#status3").select2({
+        $("#bahanBaku").select2({
             placeholder: "Please Select",
             width: '100%'
         });
@@ -289,7 +195,7 @@
 <script>
     $(function(){
 
-        $('#jmlGulaPasir').keypress(function(e) {
+        $('#jmlBahan').keypress(function(e) {
             if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
         })
             .on("cut copy paste",function(e){
@@ -298,16 +204,6 @@
 
     });
 
-    $(function(){
-
-        $('#jmlTepung').keypress(function(e) {
-            if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
-        })
-            .on("cut copy paste",function(e){
-                e.preventDefault();
-            });
-
-    });
 </script>
 
 
