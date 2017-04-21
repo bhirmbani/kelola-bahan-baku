@@ -1,11 +1,8 @@
 <% include ../partials/header.ejs %>
-
 <link href="/javascripts/datatables/jquery.dataTables.min.css"
       rel="stylesheet"
       type="text/css"/>
-
 <% include ../partials/navigation.ejs %>
-
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
@@ -17,10 +14,8 @@
                     <p><strong>Chef</strong>
                     </p>
                 </div>
-
             </div>
         </div>
-
         <div id="sidebar-menu">
             <ul>
                 <li>
@@ -54,17 +49,13 @@
                         <span> Penyimpanan </span>
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>
 </div>
-
 <div class="content-page">
-
     <div class="content">
         <div class="container">
-
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-sm-12">
@@ -74,7 +65,6 @@
                     </ol>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
@@ -94,51 +84,54 @@
                                                 <th>Tanggal</th>
                                             </tr>
                                             </thead>
-
-
                                             <tbody>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Tep Terigu pembelian 10 April 2017 akan
-                                                    kadaluarsa 7 hari lagi!</td>
-                                                <td>10 April 2017</td>
-                                            </tr>
+                                          <%  let no = 1; %>
+                                          <%  bahanBelis.forEach((bahanBeli) => { %>
+                                            <%  let nama = bahanBeli.BahanBaku.nama; %>
+                                            <%  let tanggalBeli = (bahanBeli.Pembelian.tanggalBeli).getDate(); %>
+                                            <%  let bulanBeli = (bahanBeli.Pembelian.tanggalBeli).getMonth() + 1; %>
+                                            <%  let tahunBeli = (bahanBeli.Pembelian.tanggalBeli).getFullYear(); %>
+                                            <%  let tanggalExp = (bahanBeli.tanggalExp).getDate(); %>
+                                            <%  let bulanExp = (bahanBeli.tanggalExp).getMonth() + 1; %>
+                                            <%  let tahunExp = (bahanBeli.tanggalExp).getFullYear(); %>
+                                            <%  let sisaWaktu = bahanBeli.sisaWaktu; %>
+                                            <%  if (bahanBeli.sisaWaktu <= 0) { %>
+                                                <tr>
+                                                    <td><%= no++ %></td>
+                                                    <td><%=nama%> pembelian <%=tanggalBeli%>-<%=bulanBeli%>-<%=tahunBeli%> sudah
+                                                        kadaluarsa <%= -sisaWaktu %> hari yang lalu!</td>
+                                                    <td><%=tanggalExp%>-<%=bulanExp%>-<%=tahunExp%></td>
+                                                </tr>
+                                            <%  } else if (bahanBeli.sisaWaktu <= 7) { %>
+                                                <tr>
+                                                    <td><%= no++ %></td>
+                                                    <td><%=nama%> pembelian <%=tanggalBeli%>-<%=bulanBeli%>-<%=tahunBeli%> akan
+                                                        kadaluarsa <%=sisaWaktu%> hari lagi!</td>
+                                                    <td><%=tanggalExp%>-<%=bulanExp%>-<%=tahunExp%></td>
+                                                </tr>
+                                          <%    } %>
+                                          <%  }); %>
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div> <!-- End Row -->
-
         </div>
-
     </div>
-
-
 </div>
-
 <% include ../partials/footer.ejs %>
-
 </div>
-
-
 <% include ../partials/script.ejs %>
-
 <script src="/javascripts/datatables/jquery.dataTables.js"></script>
 <script src="/javascripts/datatables/dataTables.bootstrap.js"></script>
-
 <script>
     $(document).ready(function () {
         $('#datatable').dataTable();
     });
-
 </script>
-
 </body>
 </html>
