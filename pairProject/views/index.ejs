@@ -156,14 +156,28 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
 
-                                        <div class="alert alert-warning" role="alert">
+                                      <%  bahanBelis.forEach((bahanBeli) => { %>
+                                        <%  if (bahanBeli.sisaWaktu === 0) { %>
+                                            <div class="alert alert-danger" role="alert">
+                                                <i class="fa fa-times-circle"></i> <strong> <%=bahanBeli.BahanBaku.nama%> </strong> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> <strong>hari
+                                                ini</strong> kadaluarsa!
+                                            </div>
+                                        <%  } else if (bahanBeli.sisaWaktu > 0 && bahanBeli.sisaWaktu <= 7) { %>
+                                            <div class="alert alert-warning" role="alert">
+                                                <i class="fa fa-warning"></i> <strong> <%=bahanBeli.BahanBaku.nama%> </strong> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> akan
+                                                kadaluarsa <b><%=bahanBeli.sisaWaktu%></b> hari lagi!
+                                            </div>
+                                      <%    } %>
+                                      <%  }); %>                                      
+
+                                        <!-- <div class="alert alert-warning" role="alert">
                                             <i class="fa fa-warning"></i> Tep Terigu pembelian 10 April 2017 akan
                                             kadaluarsa 7 hari lagi!
                                         </div>
                                         <div class="alert alert-danger" role="alert">
                                             <i class="fa fa-times-circle"></i> Tepung Terigu pembelian 1 April 2017 hari
                                             ini kadaluarsa!
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>

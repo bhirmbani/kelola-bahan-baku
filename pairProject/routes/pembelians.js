@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+const sisaWaktu = require("../helpers/helpers.js").sisaWaktu;
+const timeConvert = require("../helpers/helpers.js").timeConvert;
 
 /* GET users listing. */
 // render halaman daftar notifikasi
@@ -9,7 +11,20 @@ router.get('/', function(req, res, next) {
       include: [models.Penyimpanan]
     })
     .then(datas => {
-      res.render('pembelians/daftarPembelian', {datas:datas});
+      let arrDatas = [];
+      datas.forEach((data) => {
+        let obj = {
+          "id": data.id,
+          "tanggalBeli": timeConvert(new Date(data.tanggalBeli)),
+          "idPenyimpanan": data.idPenyimpanan,
+          "createdAt": timeConvert(data.createdAt),
+          "updatedAt": timeConvert(data.updatedAt),
+          "Penyimpanan": data.Penyimpanan
+        };
+        arrDatas.push(obj);
+      });
+      // res.json(arrDatas);
+      res.render('pembelians/daftarPembelian', {datas:arrDatas});
     })
     .catch(err => {
       console.log(err);
@@ -24,12 +39,35 @@ router.get('/detailPembelian/:id', (req,res,next) => {
     where: {id:id}, include:[models.Penyimpanan]
   })
   .then(datas => {
+
     models.BahanBeli.findAll({
       where: {idPembelian:id},attributes: ['id', 'jumlah','tanggalExp','idStatus'], include:[models.BahanBaku,models.Status]
     })
     .then(arrBahan => {
-      res.render('pembelians/detailPembelian', {datas:datas,arrBahan:arrBahan});
-      // res.json(arrBahan);
+
+      let arrBahanEditTgl = [];
+      arrBahan.forEach(bahan => {
+        let obj = {
+          "id": bahan.id,
+          "jumlah": bahan.jumlah,
+          "tanggalExp": timeConvert(bahan.tanggalExp),
+          "BahanBaku": bahan.BahanBaku
+        }
+        arrBahanEditTgl.push(obj);
+      });
+
+      let datasEditTgl = [];
+        let newObj = {
+          "id": datas.id,
+          "tanggalBeli": timeConvert(datas.tanggalBeli),
+          "idPenyimpanan": datas.idPenyimpanan,
+          "tempatPenyimpanan": datas.Penyimpanan.tempat,
+          "Penyimpanan": datas.Penyimpanan
+        }
+        datasEditTgl.push(newObj);
+
+      res.render('pembelians/detailPembelian', {datas:datas,arrBahan:arrBahanEditTgl});
+      // res.json(datasEditTgl);
     })
   })
   .catch(err => {

@@ -98,12 +98,37 @@
 
                                             <tbody>
 
-                                            <tr>
+                                              <%  let no = 1; %>
+                                              <%  bahanBelis.forEach((bahanBeli) => { %>
+                                                <%  let nama = bahanBeli.BahanBaku.nama; %>
+                                                <%  let sisaWaktu = bahanBeli.sisaWaktu; %>
+                                                <%  if (bahanBeli.sisaWaktu <= 0) { %>
+                                                    <tr>
+                                                        <td><%= no++ %></td>
+                                                        <td><b><%=nama%></b> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> sudah
+                                                            kadaluarsa <b><%= -sisaWaktu %></b> hari yang lalu!</td>
+                                                        <td><%=bahanBeli.tanggalExp%></td>
+                                                    </tr>
+                                                <%  } else if (bahanBeli.sisaWaktu) { %>
+                                                    <tr>
+                                                        <td><%= no++ %></td>
+                                                        <td><b><%=nama%></b> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> akan
+                                                            kadaluarsa <b><%=sisaWaktu%></b> hari lagi.</td>
+                                                        <td><%=bahanBeli.tanggalExp%></td>
+                                                    </tr>
+                                              <%    } %>
+                                              <%  }); %>
+
+
+
+                                            <!-- <tr>
                                                 <td>1</td>
                                                 <td>Tep Terigu pembelian 10 April 2017 akan
                                                     kadaluarsa 7 hari lagi!</td>
                                                 <td>10 April 2017</td>
-                                            </tr>
+                                            </tr> -->
+
+
                                             </tbody>
                                         </table>
                                     </div>

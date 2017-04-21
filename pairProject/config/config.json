@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "quasar",
-    "password": "kagayakuyami",
+    "username": "didit",
+    "password": "didit",
     "database": "ing_man",
     "host": "127.0.0.1",
     "port": "5432",
