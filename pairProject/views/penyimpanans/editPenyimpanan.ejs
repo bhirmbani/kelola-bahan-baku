@@ -32,10 +32,16 @@
                         <span> Notifikasi </span>
                     </a>
                 </li>
+                <!--<li>-->
+                <!--<a href="/bahanBakus/" class="waves-effect">-->
+                <!--<i class="fa fa-shopping-cart"></i>-->
+                <!--<span> Bahan Baku </span>-->
+                <!--</a>-->
+                <!--</li>-->
                 <li>
-                    <a href="/bahanBakus/" class="waves-effect">
+                    <a href="/pembelians/" class="waves-effect">
                         <i class="fa fa-shopping-cart"></i>
-                        <span> Bahan Baku </span>
+                        <span> Pembelian </span>
                     </a>
                 </li>
                 <li>
@@ -77,8 +83,13 @@
                                 <form class="cmxform form-horizontal tasi-form"
                                       id="formEditPenyimpanan"
                                       method="POST"
-                                      action=""
+                                      action="/penyimpanans/editPenyimpanan"
                                       novalidate="novalidate">
+                                      <input class=" form-control"
+                                             id="id"
+                                             name="id"
+                                             type="hidden"
+                                             value="<%- datas.id%>">
                                     <div class="col-lg-2">
                                         <img src="/images/archive.png"
                                              alt=""
@@ -94,7 +105,8 @@
                                                 <input class=" form-control"
                                                        id="namaPenyimpanan"
                                                        name="namaPenyimpanan"
-                                                       type="text">
+                                                       type="text"
+                                                       value="<%- datas.tempat%>">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -104,7 +116,8 @@
                                                 <textarea class="form-control"
                                                           id="ketPenyimpanan"
                                                           name="ketPenyimpanan"
-                                                          rows="5"></textarea>
+                                                          rows="5"><%- datas.keterangan%>
+                                                          </textarea>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -141,4 +154,3 @@
 
 </body>
 </html>
-

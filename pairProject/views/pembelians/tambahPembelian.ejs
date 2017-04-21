@@ -43,7 +43,7 @@
                 <li>
                     <a href="/pembelians/" class="waves-effect active">
                         <i class="fa fa-shopping-cart"></i>
-                        <span> Pembelian </span>
+                        <span> Penyimpanan </span>
                     </a>
                 </li>
                 <li>
@@ -68,9 +68,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="/">Home</a></li>
-                        <li>Daftar Pembelian</li>
-                        <li>Detail Pembelian</li>
-                        <li>Tambah Bahan Baku</li>
+                        <li><a href="/pembelians">Daftar Pembelian</a></li>
+                        <li>Tambah Pembelian</li>
                     </ol>
                 </div>
             </div>
@@ -79,20 +78,15 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Tambah Bahan Baku</h3>
+                            <h3 class="panel-title">Tambah Pembelian</h3>
                         </div>
                         <div class="panel-body">
                             <div class=" form">
                                 <form class="cmxform form-horizontal tasi-form"
-                                      id="formTambahBahanBaku"
+                                      id="formTambahPembelian"
                                       method="POST"
-                                      action="/bahanBakus/tambahBahanBaku"
+                                      action="/pembelians/tambahPembelian"
                                       novalidate="novalidate">
-                                      <input class=" form-control"
-                                             id="idPembelian"
-                                             name="idPembelian"
-                                             type="hidden"
-                                             value="<%- idPembelian%>">
                                     <div class="col-lg-2">
                                         <img src="/images/ingredients.png"
                                              alt=""
@@ -101,44 +95,39 @@
                                              width="100px">
                                     </div>
                                     <div class="col-lg-10">
-                                      <div class="form-group">
-                                          <div class="col-lg-6">
-                                              <label for="status1"
-                                                     class="control-label">Bahan Baku</label>
-                                              <select class=""
-                                                      id="bahanBaku"
-                                                      name="bahanBaku">
+                                        <div class="form-group ">
+                                            <div class="col-lg-6">
+                                                <label for="tglPembelian"
+                                                       class="control-label">Tanggal Pembelian
+                                                </label>
 
-                                                  <% datas.forEach(data=> { %>
-                                                    <option value="<%- data.id %>"><%- data.nama %></option>
-                                                  <%})%>
+                                                    <input type="text"
+                                                    class="form-control datepicker1"
+                                                    placeholder=""
+                                                    id="tglPembelian"
+                                                    name="tglPembelian">
+                                            </div>
+                                        </div>
 
-                                              </select>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <div class="col-lg-6">
-                                              <label for="jmlBahan"
-                                                     class="control-label">Jumlah Bahan <small>(sesuai jumlah takaran yang dibeli : gram / butir / ml)</small> </label>
-                                              <input class="form-control"
-                                                     id="jmlBahan"
-                                                     name="jmlBahan"
-                                                     type="text">
-                                          </div>
-                                      </div>
-                                      <div class="form-group ">
-                                          <div class="col-lg-6">
-                                              <label for="tglKadaluarsa"
-                                                     class="control-label">Tanggal Kadaluarsa
-                                              </label>
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="status1"
+                                                       class="control-label">Tempat Penyimpanan</label>
+                                                <select class=""
+                                                        id="tmptPenyimpanan"
+                                                        name="tmptPenyimpanan"
+                                                        required>
 
-                                              <input type="text"
-                                                     class="form-control datepicker1"
-                                                     placeholder=""
-                                                     id="tglKadaluarsa"
-                                                     name="tglKadaluarsa">
-                                          </div>
-                                      </div>
+                                                    <% datas.forEach(data=> { %>
+                                                      <option value="<%- data.id %>"><%- data.tempat %></option>
+                                                    <%})%>
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group">
                                             <div class="col-lg-6">
                                                 <button class="btn btn-primary waves-effect waves-light m-r-10"
@@ -169,10 +158,8 @@
 
 
 <% include ../partials/script.ejs %>
-
 <script src="/javascripts/select2/select2.min.js"></script>
 <script src="/javascripts/timepicker/bootstrap-datepicker.js"></script>
-
 
 <script>
     $(document).ready(function () {
@@ -185,28 +172,12 @@
 
 <script>
     $(document).ready(function () {
-        $("#bahanBaku").select2({
+        $("#tmptPenyimpanan").select2({
             placeholder: "Please Select",
             width: '100%'
         });
     });
 </script>
-
-<script>
-    $(function(){
-
-        $('#jmlBahan').keypress(function(e) {
-            if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
-        })
-            .on("cut copy paste",function(e){
-                e.preventDefault();
-            });
-
-    });
-
-</script>
-
-
 
 </body>
 </html>

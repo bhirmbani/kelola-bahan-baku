@@ -1,0 +1,179 @@
+<% include ../partials/header.ejs %>
+
+<link href="/javascripts/select2/select2.css" rel="stylesheet" type="text/css"/>
+
+<link href="/javascripts/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+
+<% include ../partials/navigation.ejs %>
+
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <div class="user-details">
+            <div class="pull-left">
+                <img src="/images/chef.png" alt="" class="thumb-md img-circle">
+            </div>
+            <div class="user-info">
+                <div class="dropdown m-t-20">
+                    <p><strong>Chef</strong>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/" class="waves-effect">
+                        <i class="fa fa-home"></i>
+                        <span> Home </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/notifikasis/" class="waves-effect">
+                        <i class="fa fa-bell"></i>
+                        <span> Notifikasi </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pembelians/" class="waves-effect active">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span> Penyimpanan </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/penyimpanans/" class="waves-effect">
+                        <i class="fa fa-archive"></i>
+                        <span> Penyimpanan </span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="content-page">
+
+    <div class="content">
+        <div class="container">
+
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="/">Home</a>
+                        </li>
+                        <li><a href="/pembelians">Daftar Pembelian</a>
+                        </li>
+                        <li>Tambah Pembelian</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tambah Pembelian</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class=" form">
+                                <form class="cmxform form-horizontal tasi-form" id="formEditPembelian" method="POST"
+                                      action="/pembelians/editPembelian" novalidate="novalidate">
+                                    <input class=" form-control"
+                                           id="id"
+                                           name="id"
+                                           type="hidden"
+                                           value="<%- datas.id %>">
+                                    <div class="col-lg-2">
+                                        <img src="/images/ingredients.png" alt="" class="img-responsive center-block"
+                                             height="100px" width="100px">
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group ">
+                                            <div class="col-lg-6">
+                                                <label for="tglPembelian" class="control-label">Tanggal Pembelian
+                                                </label>
+
+                                                <input type="text" class="form-control datepicker1" placeholder=""
+                                                       id="tglPembelian" name="tglPembelian"
+                                                       value="<%- datas.tanggalBeli %>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <label for="status1" class="control-label">Tempat Penyimpanan</label>
+                                                <select class="" id="tmptPenyimpanan" name="tmptPenyimpanan" required>
+
+                                                    <% arrPenyimpanan.forEach(penyimpanan => {if(penyimpanan.id == datas.idPenyimpanan){ %>
+                                                    <option value="<%- penyimpanan.id %>" selected=>
+                                                        <%- penyimpanan.tempat %>
+                                                    </option>
+                                                    <% } else { %>
+                                                    <option value="<%- penyimpanan.id %>">
+                                                        <%- penyimpanan.tempat %>
+                                                    </option>
+                                                    <% } }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-lg-6">
+                                                <button class="btn btn-primary waves-effect waves-light m-r-10"
+                                                        name="submit" type="submit"><i class="fa fa-save"></i> Simpan
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- .form -->
+                        </div>
+                        <!-- panel-body -->
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Row -->
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<% include ../partials/footer.ejs %>
+
+</div>
+
+
+<% include ../partials/script.ejs %>
+<script src="/javascripts/select2/select2.min.js"></script>
+<script src="/javascripts/timepicker/bootstrap-datepicker.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker1').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#tmptPenyimpanan").select2({
+            placeholder: "Please Select",
+            width: '100%'
+        });
+    });
+</script>
+
+</body>
+
+</html>

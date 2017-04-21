@@ -12,6 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         BahanBeli.belongsTo(models.BahanBaku, {foreignKey: "idBahanBaku"});
         BahanBeli.belongsTo(models.Pembelian, {foreignKey: "idPembelian"});
+        BahanBeli.belongsTo(models.Status, {foreignKey:"idStatus"});
       }
     }
   });
