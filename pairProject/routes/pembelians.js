@@ -3,6 +3,7 @@ var router = express.Router();
 var models = require('../models');
 const sisaWaktu = require("../helpers/helpers.js").sisaWaktu;
 const timeConvert = require("../helpers/helpers.js").timeConvert;
+const checkStatus = require("../helpers/helpers.js").checkStatus;
 
 /* GET users listing. */
 // render halaman daftar notifikasi
@@ -47,10 +48,13 @@ router.get('/detailPembelian/:id', (req,res,next) => {
 
       let arrBahanEditTgl = [];
       arrBahan.forEach(bahan => {
+        let sisaWkt = sisaWaktu(bahan.tanggalExp, new Date());
         let obj = {
           "id": bahan.id,
           "jumlah": bahan.jumlah,
           "tanggalExp": timeConvert(bahan.tanggalExp),
+          "sisaWaktu": sisaWkt,
+          "status": checkStatus(sisaWkt),
           "BahanBaku": bahan.BahanBaku
         }
         arrBahanEditTgl.push(obj);
@@ -67,7 +71,7 @@ router.get('/detailPembelian/:id', (req,res,next) => {
         datasEditTgl.push(newObj);
 
       res.render('pembelians/detailPembelian', {datas:datas,arrBahan:arrBahanEditTgl});
-      // res.json(datasEditTgl);
+      // res.json(arrBahanEditTgl);
     })
   })
   .catch(err => {

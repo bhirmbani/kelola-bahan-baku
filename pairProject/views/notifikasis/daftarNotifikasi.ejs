@@ -106,15 +106,15 @@
                                                     <tr>
                                                         <td><%= no++ %></td>
                                                         <td><b><%=nama%></b> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> sudah
-                                                            kadaluarsa <b><%= -sisaWaktu %></b> hari yang lalu!</td>
+                                                            kadaluarsa <b>hari ini</b> !</td>
                                                         <td><%=bahanBeli.tanggalExp%></td>
                                                     </tr>
-                                                <%  } else if (bahanBeli.sisaWaktu) { %>
+                                                <%  } else if (bahanBeli.sisaWaktu <= 7) { %>
                                                     <tr>
                                                         <td><%= no++ %></td>
                                                         <td><b><%=nama%></b> pembelian <b><%=bahanBeli.tanggalBeli%></b> di <b><%=bahanBeli.Pembelian.Penyimpanan.tempat%></b> akan
-                                                            kadaluarsa <b><%=sisaWaktu%></b> hari lagi.</td>
-                                                        <td><%=bahanBeli.tanggalExp%></td>
+                                                            kadaluarsa <b>7 hari lagi</b>.</td>
+                                                        <td><%=bahanBeli.tanggalh7%></td>
                                                     </tr>
                                               <%    } %>
                                               <%  }); %>

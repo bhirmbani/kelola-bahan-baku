@@ -26,5 +26,19 @@ module.exports = {
       sisaWaktu = - sisaWaktu;
     }
     return sisaWaktu;
+  },
+  checkStatus : function(sisaWaktu) {
+    if (sisaWaktu <= 0) {
+      return "kadaluarsa";
+    } else if (sisaWaktu <= 7) {
+      return "akan kadaluarsa";
+    } else {
+      return "aman";
+    }
+  },
+  tanggalh7 : function(tanggalExp) {
+    let exp = new Date(tanggalExp);
+    let date = exp.getTime() - 1000*60*60*24*7;
+    return exp.setTime(date);
   }
 }
