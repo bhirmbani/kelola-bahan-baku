@@ -192,9 +192,11 @@
                                                 <td>
                                                 <%  if (bahan.sisaWaktu > 0) { %>
                                                     <%- bahan.sisaWaktu%> hari lagi
-                                                <%  } else { %>
+                                                <%  } else if (bahan.sisaWaktu < 0){ %>
                                                      <%- -bahan.sisaWaktu%> hari yang lalu
-                                                <%  } %>
+                                                <%  } else { %>
+                                                      <b>hari ini!</b>
+                                                <% } %>
                                                 </td>
                                                 <td>
                                                   <a href="/bahanBakus/editBahanBaku/<%- bahan.id%>"
